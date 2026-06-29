@@ -1,0 +1,181 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{name}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static '/profiles/css/template_cv1.css' %}">
+  </head>
+  <body>
+
+    <nav>
+      <div class="menu-btn">
+        <div class="line line--1"></div>
+        <div class="line line--2"></div>
+        <div class="line line--3"></div>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#home" class="link">Home</a></li>
+        <li><a href="#experience" class="link">Experience</a></li>
+        <li><a href="#skills" class="link">Skills</a></li>
+        <li><a href="#contact" class="link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section id="home" style="border-radius: 0 ;border-top: 0; margin-bottom: 0; margin-top: 0;">
+      
+      <div class="bg">
+          <video autoplay loop muted playsinline class="bgvideo">
+              <source src="https://cdn.imgchest.com/files/25d63f61c5bc.mp4" type="video/mp4">
+          </video>
+          <div class="overlay"></div>
+      </div>
+
+      <div class="pro-inner">
+        <img src="{% static '/profiles/images/wor.png' %}" alt="Profile" class="pro-img">
+        <div class="pro-tag">SPSM | CE 68</div>
+        <h1 class="pro-name">{{name}}</h1>
+
+      </div>
+      
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Showcase</p>
+          <h2 class="section-title">Experience</h2>
+        </div>
+
+        <div class="exp-list">
+          {% for certification in certifications%}
+          <div class="exp-item">
+            <p style="font-size: 14px;color: darkgrey;">{{certification.date}}</p>
+            <div>
+              
+                <img src="{{certification.photo}}" alt="img" height="200" width="autoplay">
+                
+                <p style="font-size: 16px;">{{certification.detail}}</p>
+                  <p style="font-size: 12px;color: darkgrey;">{{from}}</p>
+              
+                </div>
+            </div>
+            {% endfor %}
+            
+          
+
+          
+
+
+
+        </div>
+        <!--End Experience List-->
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Expertise</p>
+          <h2 class="section-title">Skills</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card" style="border-radius: 10px;">
+            <p class="skill-title">Coding</p>
+            <div class="tag-list">
+                {%  for skill in programming_skills %}
+              <span class="tag">{{skill}}</span>
+              
+
+                {% endfor%}
+            </div>
+          </div>
+
+          <div class="skill-card" style="border-radius: 10px;">
+            <p class="skill-title">Embedded System</p>
+            <div class="tag-list">
+                 {%  for skill in Embedded_Skills %}
+              <span class="tag">{{skill}}</span>
+
+              {% endfor%}
+            </div>
+          </div>
+
+          <div class="skill-card" style="border-radius: 10px;">
+            <p class="skill-title">-Title-</p>
+            <div class="tag-list">
+              <span class="tag">-Tag-</span>
+              <span class="tag">-Tag-</span>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Get in touch</p>
+          <h2 class="section-title">Contact</h2>
+        </div>
+
+        <div class="contact-list">
+          <div class="contact-row" style="border-radius: 10px;">
+            <span class="contact-type">Email</span>
+            <span class="contact-value">worachaikhamnuan16706@gmail.com</span>
+          </div>
+          <div class="contact-row" style="border-radius: 10px;">
+            <span class="contact-type">Git Hub</span>
+            <span class="contact-value">https://github.com/0NE029848</span>
+          </div>
+          <div class="contact-row" style="border-radius: 10px;">
+            <span class="contact-type">Instagram</span>
+            <span class="contact-value">@0ne.wrc</span>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <a href="index.html" class="btn">Back to Portfolio</a>
+    
+    <script>
+      const menuBtn = document.querySelector('.menu-btn');
+      const nav = document.querySelector('nav');
+      const lineOne = document.querySelector('.line--1');
+      const lineTwo = document.querySelector('.line--2');
+      const lineThree = document.querySelector('.line--3');
+      const linkContainer = document.querySelector('.nav-links');
+      const links = document.querySelectorAll('.link');
+
+      menuBtn.addEventListener('click', () => {
+          nav.classList.toggle('nav-open');
+          lineOne.classList.toggle('line-cross');
+          lineTwo.classList.toggle('line-fade-out');
+          lineThree.classList.toggle('line-cross');
+          linkContainer.classList.toggle('fade-in');
+      });
+
+      // Close menu when a link is clicked
+      links.forEach(link => {
+          link.addEventListener('click', () => {
+              nav.classList.remove('nav-open');
+              lineOne.classList.remove('line-cross');
+              lineTwo.classList.remove('line-fade-out');
+              lineThree.classList.remove('line-cross');
+              linkContainer.classList.remove('fade-in');
+          });
+      });
+    </script>
+
+  </body>
+</html>
